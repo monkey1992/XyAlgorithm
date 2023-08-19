@@ -1,4 +1,4 @@
-package com.xy.algorithm;
+package com.xy.algorithm.sort;
 
 import org.junit.Test;
 
@@ -13,10 +13,37 @@ public class Sort {
     public void testSelectionSort() {
         int[] array = new int[]{1, 3, 10, 5, 7, 6, 2, 9, 8, 16};
         long timestamp = System.nanoTime();
-        selectionSort(array);
+        mySelectionSort(array);
         long cost = System.nanoTime() - timestamp;
         System.out.println(Arrays.toString(array) + ", cost: " + cost);
     }
+
+    private void mySelectionSort(int[] array) {
+        System.out.println("排序前的数组：" + Arrays.toString(array) + "\n");
+        if (array == null) {
+            return;
+        }
+        int length = array.length;
+        if (length < 2) {
+            return;
+        }
+        for (int i = 0; i < length - 1; i++) {
+            System.out.println("第 " + (i + 1) + " 轮排序前的数组：" + Arrays.toString(array));
+            for (int j = i + 1; j < length; j++) {
+                if (array[i] > array[j]) {
+                    int temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+            }
+            System.out.println("第 " + (i + 1) + " 轮排序后的数组：" + Arrays.toString(array) + "\n");
+        }
+        System.out.println("排序后的数组：" + Arrays.toString(array));
+    }
+
+
+
+
 
     /**
      * 选择排序
