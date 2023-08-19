@@ -6,11 +6,6 @@ import java.util.Arrays;
 
 public class Main {
 
-    public void testKuoZhan() {
-        KuoZhan kuoZhan = new KuoZhan();
-        KuoZhanKt.abc(kuoZhan);
-    }
-
     private boolean sort(int a, int b) {
         return a - b > 0;
     }
