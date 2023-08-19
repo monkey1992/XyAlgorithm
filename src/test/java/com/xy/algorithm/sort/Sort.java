@@ -7,48 +7,6 @@ import java.util.Arrays;
 public class Sort {
 
     /**
-     * 测试冒泡排序
-     */
-    @Test
-    public void testBubbleSort() {
-        int[] array = new int[]{1, 3, 10, 5, 7, 6, 2, 9, 8, 16};
-        long timestamp = System.nanoTime();
-        bubbleSort(array);
-        long cost = System.nanoTime() - timestamp;
-        System.out.println(Arrays.toString(array) + ", cost: " + cost);
-    }
-
-    /**
-     * 冒泡排序
-     */
-    private void bubbleSort(int[] array) {
-        if (array == null) {
-            return;
-        }
-        int length = array.length;
-        if (length < 2) {
-            return;
-        }
-        // 示例：
-        // 原数组：[4,2,3,1]，数组长度 length 为 4
-        // 需要进行3 （length - 1 = 3）次排序
-        // 第 1 次排序结果：2,3,1,4（4 冒泡至数组尾部）
-        // 第 2 次排序结果：2,1,3,4（3 冒泡至数组倒数第 2 位置）
-        // 第 3 次排序结果：1,2,3,4（2 冒泡至数组倒数第 3 位置）
-        for (int i = 0; i < length - 1; i++) {
-            for (int j = 0; j < length - 1; j++) {
-                // 相邻元素进行比较
-                if (array[j] > array[j + 1]) {
-                    // 发现 j 对应的元素比 j + 1 对应的元素更大，交换 j 和 j + 1 对应元素的位置
-                    int temp = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = temp;
-                }
-            }
-        }
-    }
-
-    /**
      * 测试快速排序
      */
     @Test
