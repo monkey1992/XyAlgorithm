@@ -4,7 +4,7 @@ import org.junit.Test;
 
 /**
  * 快速排序
- * 时间复杂度：平均 O(n log n)，最差情况 O(n²)，取决于基准值
+ * 时间复杂度：平均 O(n log n)，最差情况 O(n²)，取决于基准值（pivot）
  */
 public class QuickSort extends BaseSort {
 
