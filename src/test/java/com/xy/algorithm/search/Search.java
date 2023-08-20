@@ -1,9 +1,15 @@
-package com.xy.algorithm;
+package com.xy.algorithm.search;
 
 import org.junit.Test;
 
+/**
+ * 查找
+ */
 public class Search {
 
+    /**
+     * 测试二分查找
+     */
     @Test
     public void testBinarySearch() {
         int[] array = new int[]{1, 3, 6, 8, 9, 12, 16, 22, 30, 35, 37, 46, 55, 61, 70, 76, 77, 81, 82, 86, 92, 96, 100};
@@ -16,6 +22,15 @@ public class Search {
         }
     }
 
+    /**
+     * 二分查找
+     *
+     * @param array
+     * @param target
+     * @param low
+     * @param high
+     * @return
+     */
     private int binarySearch(int[] array, int target, int low, int high) {
         if (low > high) {
             return -1;

@@ -105,17 +105,70 @@ public class Tree {
         System.out.print(treeNode.value + ", ");
     }
 
+    /**
+     * 测试深度优先搜索
+     */
     @Test
     public void testDFS() {
         dfs(node1);
     }
 
+    /**
+     * 深度优先搜索
+     */
     private void dfs(TreeNode<Integer> treeNode) {
 
     }
 
+    /**
+     * 测试广度优先搜索
+     */
     @Test
     public void testBFS() {
+        ArrayList<ArrayList<TreeNode<Integer>>> treeNodesList = new ArrayList<>();
+        bfs(node1, treeNodesList, 0);
+        int size = treeNodesList.size();
+        if (size < 1) {
+            return;
+        }
+        for (int i = 0; i < size; i++) {
+            ArrayList<TreeNode<Integer>> treeNodes = treeNodesList.get(i);
+            int treeNodesSize = treeNodes.size();
+            if (treeNodesSize < 1) {
+                continue;
+            }
+            for (int j = 0; j < treeNodesSize; j++) {
+                System.out.print(treeNodes.get(j).value + " ");
+            }
+        }
+    }
+
+    /**
+     * 广度优先搜索
+     */
+    private void bfs(TreeNode<Integer> treeNode, ArrayList<ArrayList<TreeNode<Integer>>> treeNodesList, int level) {
+        if (treeNode == null) {
+            return;
+        }
+        ArrayList<TreeNode<Integer>> treeNodes;
+        int size = treeNodesList.size();
+        if (level < size) {
+            treeNodes = treeNodesList.get(level);
+        } else {
+            treeNodes = new ArrayList<>();
+            treeNodesList.add(treeNodes);
+        }
+        treeNodes.add(treeNode);
+        level++;
+        bfs(treeNode.left, treeNodesList, level);
+        bfs(treeNode.right, treeNodesList, level);
+    }
+
+    /**
+     * 打印二叉树每一层最右边的节点
+     */
+    @Test
+    public void printEveryLevelRight() {
         ArrayList<ArrayList<TreeNode<Integer>>> treeNodesList = new ArrayList<>();
         bfs(node1, treeNodesList, 0);
         int size = treeNodesList.size();
@@ -134,24 +187,6 @@ public class Tree {
             }
             System.out.println(node.value);
         }
-    }
-
-    private void bfs(TreeNode<Integer> treeNode, ArrayList<ArrayList<TreeNode<Integer>>> treeNodesList, int level) {
-        if (treeNode == null) {
-            return;
-        }
-        ArrayList<TreeNode<Integer>> treeNodes;
-        int size = treeNodesList.size();
-        if (level < size) {
-            treeNodes = treeNodesList.get(level);
-        } else {
-            treeNodes = new ArrayList<>();
-            treeNodesList.add(treeNodes);
-        }
-        treeNodes.add(treeNode);
-        level++;
-        bfs(treeNode.left, treeNodesList, level);
-        bfs(treeNode.right, treeNodesList, level);
     }
 
     @Test

@@ -57,8 +57,8 @@ public class Main {
     public void main() {
         int[] arr = new int[]{1, 2, 3, 6, 9, 10, 12, 19, 17, 13, 10, 9, 6, 5, 1};
         int[] result = filterAndSort(arr);
-        System.out.println(Arrays.toString(result));
-//        System.out.println(Arrays.toString(Arrays.stream(arr).distinct().sorted().toArray()));
+//        System.out.println(Arrays.toString(result));
+        System.out.println(Arrays.toString(Arrays.stream(arr).distinct().sorted().toArray()));
     }
 
     class A {
