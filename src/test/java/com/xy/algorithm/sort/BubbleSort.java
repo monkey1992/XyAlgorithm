@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 /**
  * 冒泡排序
+ * 时间复杂度：O(n²)
  */
 public class BubbleSort extends BaseSort {
 
@@ -15,7 +16,7 @@ public class BubbleSort extends BaseSort {
     @Test
     @Override
     public void testSort() {
-        sort(array);
+        super.testSort();
     }
 
     /**
@@ -58,10 +59,7 @@ public class BubbleSort extends BaseSort {
     @Test
     @Override
     public void testSortWithLog() {
-        long timestamp = System.currentTimeMillis();
-        sortWithLog(array);
-        long cost = System.currentTimeMillis() - timestamp;
-        System.out.println(Arrays.toString(array) + ", 耗时: " + cost + " 毫秒");
+        super.testSortWithLog();
     }
 
     /**

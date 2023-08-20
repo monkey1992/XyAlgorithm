@@ -13,7 +13,8 @@ public abstract class BaseSort {
      * 重置数组
      */
     private void resetArray() {
-        array = new int[]{20, 1, 3, 10, 5, 7, 6, 2, 9, 8, 6, 16};
+//        array = new int[]{20, 1, 3, 10, 5, 7, 6, 2, 9, 8, 6, 16};
+        array = new int[]{6, 2, 4, 7, 3, 1, 8};
     }
 
     @Before
@@ -30,11 +31,18 @@ public abstract class BaseSort {
         System.out.println("after resetArray: " + Arrays.toString(array));
     }
 
-    public abstract void testSort();
+    public void testSort() {
+        sort(array);
+    }
 
     public abstract void sort(int[] array);
 
-    public abstract void testSortWithLog();
+    public void testSortWithLog() {
+        long timestamp = System.currentTimeMillis();
+        sortWithLog(array);
+        long cost = System.currentTimeMillis() - timestamp;
+        System.out.println(Arrays.toString(array) + ", 耗时: " + cost + " 毫秒");
+    }
 
     public abstract void sortWithLog(int[] array);
 }
