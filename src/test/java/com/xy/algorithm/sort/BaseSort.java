@@ -13,8 +13,8 @@ public abstract class BaseSort {
      * 重置数组
      */
     private void resetArray() {
-//        array = new int[]{20, 1, 3, 10, 5, 7, 6, 2, 9, 8, 6, 16};
-        array = new int[]{6, 2, 4, 7, 3, 1, 8};
+        array = new int[]{20, 1, 3, 10, 5, 7, 6, 2, 9, 8, 6, 16};
+//        array = new int[]{6, 2, 4, 7, 3, 1, 8};
     }
 
     @Before
