@@ -33,16 +33,20 @@ public class LengthOfLongestSubstring {
 
     @Test
     public void testLengthOfLongestSubstring() {
-        String s = "abcabcbb";
-//        String s = "bbbbb";
-//        String s = "pwwkew";
-//        String s = "aabaab!bb";
-//        String s = "dvdf";
-        long timestamp = System.nanoTime();
-        int maxLength = mySolution(s);
+        String[] strings = new String[]{
+                "abcabcbb",
+                "bbbbb",
+                "pwwkew",
+                "aabaab!bb",
+                "dvdf"
+        };
+        for (String s : strings) {
+            long timestamp = System.nanoTime();
+            int maxLength = mySolution(s);
 //        int maxLength = lengthOfLongestSubstring(s);
 //        int maxLength = lengthOfLongestSubstring2(s);
-        System.out.println("maxLength: " + maxLength + "，耗时：" + (System.nanoTime() - timestamp) + " 纳秒");
+            System.out.println("maxLength: " + maxLength + "，耗时：" + (System.nanoTime() - timestamp) + " 纳秒");
+        }
     }
 
     /**
