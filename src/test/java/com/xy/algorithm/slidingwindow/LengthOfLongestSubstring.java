@@ -34,16 +34,16 @@ public class LengthOfLongestSubstring {
     @Test
     public void testLengthOfLongestSubstring() {
         String[] strings = new String[]{
-                "abcabcbb",
-                "bbbbb",
+//                "abcabcbb",
+//                "bbbbb",
                 "pwwkew",
-                "aabaab!bb",
-                "dvdf"
+//                "aabaab!bb",
+//                "dvdf"
         };
         for (String s : strings) {
             long timestamp = System.nanoTime();
-            int maxLength = mySolution(s);
-//        int maxLength = lengthOfLongestSubstring(s);
+//            int maxLength = mySolution(s);
+            int maxLength = lengthOfLongestSubstring(s);
 //        int maxLength = lengthOfLongestSubstring2(s);
             System.out.println("maxLength: " + maxLength + "，耗时：" + (System.nanoTime() - timestamp) + " 纳秒");
         }
@@ -92,12 +92,13 @@ public class LengthOfLongestSubstring {
             return length;
         }
         int result = 0;
-        int[] charIndex = new int[256];
-        for (int left = 0, right = 0; right < length; right++) {
-            char c = s.charAt(right);
-            left = Math.max(charIndex[c], left);
+        Map<Character, Integer> map = new HashMap<>();
+        for (int right = 0, left = 0; right < length; right++) {
+            if (map.containsKey(s.charAt(right))) {
+                left = Math.max(map.get(s.charAt(right)), left);
+            }
             result = Math.max(result, right - left + 1);
-            charIndex[c] = right + 1;
+            map.put(s.charAt(right), right + 1);
         }
         return result;
     }
@@ -111,13 +112,12 @@ public class LengthOfLongestSubstring {
             return length;
         }
         int result = 0;
-        Map<Character, Integer> map = new HashMap<>();
-        for (int right = 0, left = 0; right < length; right++) {
-            if (map.containsKey(s.charAt(right))) {
-                left = Math.max(map.get(s.charAt(right)), left);
-            }
+        int[] charIndex = new int[256];
+        for (int left = 0, right = 0; right < length; right++) {
+            char c = s.charAt(right);
+            left = Math.max(charIndex[c], left);
             result = Math.max(result, right - left + 1);
-            map.put(s.charAt(right), right + 1);
+            charIndex[c] = right + 1;
         }
         return result;
     }
