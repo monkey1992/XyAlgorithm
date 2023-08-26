@@ -34,19 +34,46 @@ public class LengthOfLongestSubstring {
     @Test
     public void testLengthOfLongestSubstring() {
         String[] strings = new String[]{
-//                "abcabcbb",
-//                "bbbbb",
+                "abcabcbb",
+                "bbbbb",
                 "pwwkew",
-//                "aabaab!bb",
-//                "dvdf"
+                "aabaab!bb",
+                "dvdf"
         };
         for (String s : strings) {
             long timestamp = System.nanoTime();
+            int maxLength = practice(s);
 //            int maxLength = mySolution(s);
-            int maxLength = lengthOfLongestSubstring(s);
-//        int maxLength = lengthOfLongestSubstring2(s);
+//            int maxLength = lengthOfLongestSubstring1(s);
+//            int maxLength = lengthOfLongestSubstring2(s);
             System.out.println("maxLength: " + maxLength + "，耗时：" + (System.nanoTime() - timestamp) + " 纳秒");
         }
+    }
+
+    /**
+     * 练习
+     */
+    private int practice(String s) {
+        if (s == null) {
+            return 0;
+        }
+        int length = s.length();
+        if (length < 2) {
+            return length;
+        }
+        Map<Character, Integer> map = new HashMap<>();
+        int left = 0;
+        int result = 0;
+        for (int right = 0; right < length; right++) {
+            char c = s.charAt(right);
+            Integer position = map.get(c);
+            if (position != null) {
+                left = Math.max(left, position + 1);
+            }
+            map.put(c, right);
+            result = Math.max(result, right - left + 1);
+        }
+        return result;
     }
 
     /**
@@ -83,7 +110,10 @@ public class LengthOfLongestSubstring {
         return maxLength;
     }
 
-    private int lengthOfLongestSubstring(String s) {
+    /**
+     * 优秀题解1
+     */
+    private int lengthOfLongestSubstring1(String s) {
         if (s == null) {
             return 0;
         }
@@ -103,6 +133,9 @@ public class LengthOfLongestSubstring {
         return result;
     }
 
+    /**
+     * 优秀题解2
+     */
     private int lengthOfLongestSubstring2(String s) {
         if (s == null) {
             return 0;
