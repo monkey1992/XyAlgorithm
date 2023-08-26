@@ -112,9 +112,6 @@ public class ThreeSum {
     private boolean compare(List<Integer> list1, List<Integer> list2) {
         list1.sort(Integer::compareTo);
         list2.sort(Integer::compareTo);
-        if (list1.get(0).equals(list2.get(0)) && list1.get(1).equals(list2.get(1)) && list1.get(2).equals(list2.get(2))) {
-            return true;
-        }
-        return false;
+        return list1.get(0).equals(list2.get(0)) && list1.get(1).equals(list2.get(1)) && list1.get(2).equals(list2.get(2));
     }
 }
