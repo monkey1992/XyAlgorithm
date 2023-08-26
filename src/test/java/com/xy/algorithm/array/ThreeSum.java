@@ -87,7 +87,7 @@ public class ThreeSum {
                         list.add(valueI);
                         list.add(valueJ);
                         list.add(valueK);
-                        System.out.println("===" + list + "===");
+                        System.out.println("======" + list + "======");
                         boolean isEqual = false;
                         int resultSize = result.size();
                         if (resultSize > 0) {
