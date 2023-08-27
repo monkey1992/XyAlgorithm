@@ -3,6 +3,7 @@ package com.xy.algorithm.array;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,13 +13,13 @@ import java.util.List;
  * LeetCode地址：https://leetcode.cn/problems/3sum/
  * <p>
  * 给你一个整数数组 nums ，判断是否存在三元组 [nums[i], nums[j], nums[k]] 满足 i != j、i != k 且 j != k ，同时还满足 nums[i] + nums[j] + nums[k] == 0 。请
- *
+ * <p>
  * 你返回所有和为 0 且不重复的三元组。
- *
+ * <p>
  * 注意：答案中不可以包含重复的三元组。
- *
+ * <p>
  * 示例 1：
- *
+ * <p>
  * 输入：nums = [-1,0,1,2,-1,-4]
  * 输出：[[-1,-1,2],[-1,0,1]]
  * 解释：
@@ -28,18 +29,18 @@ import java.util.List;
  * 不同的三元组是 [-1,0,1] 和 [-1,-1,2] 。
  * 注意，输出的顺序和三元组的顺序并不重要。
  * 示例 2：
- *
+ * <p>
  * 输入：nums = [0,1,1]
  * 输出：[]
  * 解释：唯一可能的三元组和不为 0 。
  * 示例 3：
- *
+ * <p>
  * 输入：nums = [0,0,0]
  * 输出：[[0,0,0]]
  * 解释：唯一可能的三元组和为 0 。
- *
+ * <p>
  * 提示：
- *
+ * <p>
  * 3 <= nums.length <= 3000
  * -105 <= nums[i] <= 105
  */
@@ -49,11 +50,15 @@ public class ThreeSum {
     public void testThreeSum() {
 //        int[] nums = new int[]{-4, -2, 1, -5, -4, -4, 4, -2, 0, 4, 0, -2, 3, 1, -5, 0};
         int[] nums = new int[]{0, 3, 0, 1, 1, -1, -5, -5, 3, -3, -3, 0};
-        List<List<Integer>> result = threeSum(nums);
+//        List<List<Integer>> result = mySolution(nums);
+        List<List<Integer>> result = threeSum1(nums);
         System.out.println(result);
     }
 
-    public List<List<Integer>> threeSum(int[] nums) {
+    /**
+     * 我的题解
+     */
+    public List<List<Integer>> mySolution(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
         if (nums == null) {
             return result;
@@ -113,5 +118,65 @@ public class ThreeSum {
         list1.sort(Integer::compareTo);
         list2.sort(Integer::compareTo);
         return list1.get(0).equals(list2.get(0)) && list1.get(1).equals(list2.get(1)) && list1.get(2).equals(list2.get(2));
+    }
+
+    /**
+     * 优秀题解1
+     */
+    public List<List<Integer>> threeSum1(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (nums == null) {
+            return result;
+        }
+        int length = nums.length;
+        if (length < 3) {
+            return result;
+        }
+        if (length == 3) {
+            int value0 = nums[0];
+            int value1 = nums[1];
+            int value2 = nums[2];
+            if (value0 + value1 + value2 == 0) {
+                result.add(Arrays.asList(value0, value1, value2));
+            }
+            return result;
+        }
+        Arrays.sort(nums);
+        if (nums[0] > 0) {
+            return result;
+        }
+        for (int i = 0; i < length; i++) {
+            int valueI = nums[i];
+            if (valueI > 0) {
+                break;
+            }
+            int target = -nums[i];
+            int left = i + 1;
+            int right = length - 1;
+            if (i != 0 && valueI == nums[i - 1]) {
+                continue;
+            }
+            while (left < right) {
+                int valueLeft = nums[left];
+                int valueRight = nums[right];
+                int sum = valueLeft + valueRight;
+                if (sum == target) {
+                    result.add(Arrays.asList(valueI, valueLeft, valueRight));
+                    while (left < right && valueLeft == nums[left + 1]) {
+                        left++;
+                    }
+                    while (left < right && valueRight == nums[right - 1]) {
+                        right--;
+                    }
+                    left++;
+                    right--;
+                } else if (sum < target) {
+                    left++;
+                } else {
+                    right--;
+                }
+            }
+        }
+        return result;
     }
 }

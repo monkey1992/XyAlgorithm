@@ -77,7 +77,7 @@ public class LengthOfLongestSubstring {
     }
 
     /**
-     * 我提交的题解
+     * 我的题解
      */
     private int mySolution(String s) {
         if (s == null) {
